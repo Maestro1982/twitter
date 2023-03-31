@@ -1,4 +1,5 @@
-import { items } from '@/data';
+import { BsHouseFill, BsBellFill } from 'react-icons/bs';
+import { FaUser } from 'react-icons/fa';
 import { BiLogOut } from 'react-icons/bi';
 import SidebarItem from './SidebarItem';
 import SidebarLogo from './SidebarLogo';
@@ -8,6 +9,26 @@ import { signOut } from 'next-auth/react';
 
 const Sidebar = () => {
   const { data: currentUser } = useCurrentUser();
+
+  const items = [
+    {
+      label: 'Home',
+      href: '/',
+      icon: BsHouseFill,
+    },
+    {
+      label: 'Notifications',
+      href: '/notifications',
+      icon: BsBellFill,
+      auth: true,
+    },
+    {
+      label: 'Profile',
+      href: `/users/${currentUser?.id}`,
+      icon: FaUser,
+      auth: true,
+    },
+  ];
 
   return (
     <div className='col-span-1 h-full pr-4 md:pr-6'>
